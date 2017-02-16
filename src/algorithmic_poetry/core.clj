@@ -2,6 +2,7 @@
   (:require [clojure.string :as str]))
 
 (def mb-txt (slurp "resources/moby_dick.txt"))
+(def slaughterhouse5-txt (slurp "resources/slaughterhouse5.txt"))
 
 (defn text->words [text]
   (clojure.string/split text #" |\n|:|\.|;|\-|,|\"|\!|'|\?"))

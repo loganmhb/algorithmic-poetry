@@ -1,4 +1,5 @@
-(ns algorithmic-poetry.core)
+(ns algorithmic-poetry.core
+  (:require [clojure.string :as str]))
 
 (def mb-txt (slurp "resources/moby_dick.txt"))
 
@@ -22,7 +23,7 @@
             (let [[a b c] transition]
               (update lookup-map [a b] conj c)))
           {}
-          mb-transitions))
+          transitions))
 
 (def mb-transitions (partition-all 3 1 (map clojure.string/lower-case mb-words)))
 
@@ -43,14 +44,12 @@
            (lazy-seq (generate-text lookup-map next-pair))))))
 
 
-(defn generate-excert-for-source-string [s]
+(defn generate-excerpt-for-source-string [s]
   (let [lookup (-> s
                    words
                    transitions
                    transition-map)]
-    (apply str (take 5000 (generate-text lookup)))))
+    (str/join " " (take 5000 (generate-text lookup)))))
 
-(clojure.string/join " " (take 500 (generate-text mb-transition-map)))
 
-*1
-#_(apply str (take 5000 (generate-["" ""])))
+(generate-excerpt-for-source-string mb-txt)
