@@ -3,6 +3,8 @@
 
 (def mb-txt (slurp "resources/moby_dick.txt"))
 (def slaughterhouse5-txt (slurp "resources/slaughterhouse5.txt"))
+(def jane-eyre-txt (slurp "resources/jane_eyre.txt"))
+(def shakespeare-comedies (slurp "resources/much_ado.txt"))
 
 (defn text->words [text]
   (clojure.string/split text #" |\n|:|\.|;|\-|,|\"|\!|'|\?"))
@@ -53,4 +55,4 @@
     (str/join " " (take 5000 (generate-text lookup)))))
 
 
-(generate-excerpt-for-source-string mb-txt)
+(generate-excerpt-for-source-string shakespeare-comedies)
